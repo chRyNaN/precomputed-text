@@ -91,9 +91,6 @@ repositories {
 implementation "com.chrynan.precomputedtext:precomputedtext-android:0.1.0-release"
 ```
 
-Currently you would have to clone the project and build manually to get the aar file and add that to your project. This is because I'm in the process of migrating away from [Bintray](https://bintray.com) since they are closing down.
-When my libraries are migrated to another repository, I will update this build information.
-
 ## License
 
 ```
