@@ -1,0 +1,54 @@
+import com.chrynan.precomputedtext.buildSrc.LibraryConstants
+
+group LibraryConstants.group
+version LibraryConstants.versionName
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.1.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31"
+        classpath "digital.wup:android-maven-publish:3.6.2"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.4.30"
+    }
+}
+
+apply plugin: "org.jetbrains.dokka"
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url = "https://dl.bintray.com/chrynan/chrynan" }
+    }
+}
+
+subprojects {
+    apply plugin: "maven-publish"
+
+    publishing {
+        repositories {
+            maven {
+                url "https://repo.repsy.io/mvn/chrynan/public"
+                credentials {
+                    username repsyUsername
+                    password repsyPassword
+                }
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+// Documentation
+tasks.dokkaGfmMultiModule.configure {
+    outputDirectory.set(file("${projectDir.path}/docs"))
+}

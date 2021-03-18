@@ -1,0 +1,58 @@
+import com.chrynan.precomputedtext.buildSrc.LibraryConstants
+
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+apply plugin: "digital.wup.android-maven-publish"
+apply plugin: "kotlin-kapt"
+apply plugin: "org.jetbrains.dokka"
+
+group LibraryConstants.group
+version LibraryConstants.versionName
+
+android {
+    compileSdkVersion LibraryConstants.androidCompileSdkVersion
+
+    defaultConfig {
+        minSdkVersion LibraryConstants.androidMinSdkVersion
+        targetSdkVersion LibraryConstants.androidTargetSdkVersion
+        versionCode LibraryConstants.versionCode
+        versionName LibraryConstants.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
+    implementation "androidx.appcompat:appcompat:1.2.0"
+
+    // Kotlin Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
+
+    // Kotlin Coroutine Dispatchers
+    implementation "com.chrynan.dispatchers:dispatchers:0.1.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3"
+}
+
+publishing {
+    publications {
+        MavenPub(MavenPublication) {
+            from(components.android)
+            artifactId "precomputedtext-android"
+        }
+    }
+}

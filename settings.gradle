@@ -1,0 +1,5 @@
+rootProject.name = "precomputed-text"
+
+include ":android"
+
+enableFeaturePreview("GRADLE_METADATA")
