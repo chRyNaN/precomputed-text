@@ -1,6 +1,7 @@
 # precomputed-text
 
-A convenient Kotlin Coroutine wrapper around Android [PrecomputedTextCompat](https://developer.android.com/reference/androidx/core/text/PrecomputedTextCompat).
+A convenient Kotlin Coroutine wrapper around Android [PrecomputedTextCompat](https://developer.android.com/reference/androidx/core/text/PrecomputedTextCompat). <br/>
+<img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/chrynan/precomputed-text">
 
 ```kotlin
 preComputeText(textView = textView, computeText = { textGenerator.generate() })
@@ -72,6 +73,23 @@ flowOfConcurrentPreComputedText(
 Have a look at the [docs folder](docs) for documentation and more information about usage.
 
 ## Building the library
+
+The library is provided through [Repsy](https://repsy.io). Checkout the [releases page](https://github.com/chRyNaN/precomputed-text/releases) to get the latest version. <br/>
+<img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/chrynan/precomputed-text">
+
+### Repository
+
+```groovy
+repositories {
+    maven { url "https://repo.repsy.io/mvn/chrynan/public" }
+}
+```
+
+### Dependencies
+
+```groovy
+implementation "com.chrynan.precomputedtext:precomputedtext-android:0.1.0-release"
+```
 
 Currently you would have to clone the project and build manually to get the aar file and add that to your project. This is because I'm in the process of migrating away from [Bintray](https://bintray.com) since they are closing down.
 When my libraries are migrated to another repository, I will update this build information.

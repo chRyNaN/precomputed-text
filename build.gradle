@@ -28,22 +28,6 @@ allprojects {
     }
 }
 
-subprojects {
-    apply plugin: "maven-publish"
-
-    publishing {
-        repositories {
-            maven {
-                url "https://repo.repsy.io/mvn/chrynan/public"
-                credentials {
-                    username repsyUsername
-                    password repsyPassword
-                }
-            }
-        }
-    }
-}
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

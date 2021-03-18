@@ -5,6 +5,7 @@ apply plugin: "kotlin-android"
 apply plugin: "digital.wup.android-maven-publish"
 apply plugin: "kotlin-kapt"
 apply plugin: "org.jetbrains.dokka"
+apply plugin: "maven-publish"
 
 group LibraryConstants.group
 version LibraryConstants.versionName
@@ -49,10 +50,24 @@ dependencies {
 }
 
 publishing {
+    repositories {
+        maven {
+            url "https://repo.repsy.io/mvn/chrynan/public"
+            credentials {
+                username repsyUsername
+                password repsyPassword
+            }
+        }
+    }
+
     publications {
-        MavenPub(MavenPublication) {
-            from(components.android)
-            artifactId "precomputedtext-android"
+        android.libraryVariants.all { variant ->
+            "maven${variant.name.capitalize()}Aar"(MavenPublication) {
+                from components.findByName("android${variant.name.capitalize()}")
+                groupId LibraryConstants.group
+                artifactId "precomputedtext-android"
+                version "${LibraryConstants.versionName}-${variant.name}"
+            }
         }
     }
 }
